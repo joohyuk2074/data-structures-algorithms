@@ -178,6 +178,22 @@ void CountSort(int A[], int n) {
     }
 }
 
+void ShellSort(int A[], int n) {
+    int gap, i, j, temp;
+    
+    for (gap=n/2; gap>=1; gap/=2) {
+        for (i=gap; i<n; i++) {
+            temp = A[i];
+            j = i - gap;
+            while (j >= 0 && A[j] > temp) {
+                A[j + gap] = A[j];
+                j = j - gap;
+            }
+            A[j + gap] = temp;
+        }
+    }
+}
+
 int main(int argc, const char * argv[]) {
     int A[] = {11, 13, 7, 12, 16, 9, 24, 5, 10, 3, 1000000};
     int n = 11;
@@ -186,7 +202,8 @@ int main(int argc, const char * argv[]) {
 //    QuickSort(A, 0, 10);
 //    IMergeSort(A, n);
 //    MergeSort(A, 0, n-1);
-    CountSort(A, n);
+//    CountSort(A, n);
+    ShellSort(A, n);
     
     for (i=0; i<n; i++) {
         printf("%d ", A[i]);
